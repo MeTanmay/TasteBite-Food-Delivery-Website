@@ -8,25 +8,26 @@ export default function Restaurant({restaurant}) {
       
         <div className="card p-3 rounded">
             
-                <img src="https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg"
-                    alt="abc"
+                <img src={restaurant.images[0].url}
+                    alt={restaurant.name} 
                     className='card-img-top mx-auto'
                 />
 
             {/* Heading and Address */}
             <div className="card-body d-flex flex-column">
-                <h5 className="card-title">Dominos Pizza</h5>
+                <h5 className="card-title">{restaurant.name}</h5>
                 <p className="rest_address">
-                    
-                    123., Street
+                    {restaurant.address}
                 </p>
 
                 {/* rating and reviews */}
+                
+                {/* rating and reviews */}
                 <div className="ratings mt-auto">
                     <div className="rating-outer">
-                        <div className="rating-inner" ></div>
+                        <div className="rating-inner" style={{width:`${(restaurant.ratings / 5) * 100}%`}}></div>
                     </div>
-                    <span id="no_of_reviews">(140) reviews</span>
+                    <span id="no_of_reviews">{restaurant.numOfReviews} reviews</span>
                 </div>
                 
 
