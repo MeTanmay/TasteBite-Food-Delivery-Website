@@ -7,7 +7,7 @@ export default function CountRestaurant() {
 
   const dispatch = useDispatch();
 
-  const {loading, error, count} = useSelector((state) => state.restaurants);
+  const {loading, error, count, showVegOnly, pureVegRestaurantsCount} = useSelector((state) => state.restaurants);
 
   useEffect(()=>{
     dispatch(getRestaurants());
@@ -22,14 +22,13 @@ export default function CountRestaurant() {
           ? (<p>Error: {error}</p>) 
           : (
             <p className="NumOfRestro">
-              {/* {showVegOnly ? pureVegRestaurantsCount : count} {" "}
+              {showVegOnly ? pureVegRestaurantsCount : count} {" "}
             <span className='Restro'>
               {
                 showVegOnly ? pureVegRestaurantsCount === 1 ? "Restaurant" : "Restaurants"
                             : count === 1 ? "Restaurant" : "Restaurants"
               }
-            </span> */}
-                {count} <span className='Restro'>Restaurants</span>
+            </span>
             </p>
           ))
       }

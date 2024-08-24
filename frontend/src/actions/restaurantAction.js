@@ -32,3 +32,27 @@ export const getRestaurants = () => {
         }
     }
 };
+
+export const sortByRatings = () => {
+    return{
+        type : SORT_BY_RATINGS,
+    }
+}
+
+export const sortByReviews = () => {
+    return{
+        type: SORT_BY_REVIEWS,       
+    }
+}
+
+export const toggleVegOnly = () => {
+    return{
+        type: TOGGLE_VEG_ONLY,       
+    }
+}
+
+export const clearErrors = () => {
+    return{
+        type: CLEAR_ERROR,       
+    }
+}

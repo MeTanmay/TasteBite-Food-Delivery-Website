@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import CountRestaurant from './CountRestaurant'
 import Restaurant from './Restaurant';
-import { getRestaurants} from '../../actions/restaurantAction';
+import { getRestaurants, sortByRatings, sortByReviews, toggleVegOnly } from '../../actions/restaurantAction';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from './Loader';
 import Message from './Message';
@@ -18,6 +18,19 @@ export default function Home() {
         restaurants,
         showVegOnly,
       } = useSelector((state) => state.restaurants);
+
+      const handleSortByReview= () => {
+        dispatch(sortByReviews());
+      }
+    
+      const handleSortByRatings = () => {
+        dispatch(sortByRatings());
+      }
+    
+      const handleToggleVegOnly = () => {
+        dispatch(toggleVegOnly());
+      }
+
       return (
         <>
           <CountRestaurant/>
@@ -29,23 +42,23 @@ export default function Home() {
                 : (
                   <section>
                   <div className="sort">
-                      {/* <button className="sort_veg p-3" 
+                      <button className="sort_veg p-3" 
                             onClick={handleToggleVegOnly}  
                       >
                       {
                         showVegOnly ? "Show All" : "Pure Veg" 
                       }
-                      </button> */}
-                      {/* <button className="sort_rev p-3"
+                      </button>
+                      <button className="sort_rev p-3"
                               onClick={handleSortByReview}
                       >
                         Sort By Review
-                      </button> */}
-                      {/* <button className="sort_rate p-3"
+                      </button>
+                      <button className="sort_rate p-3"
                             onClick={handleSortByRatings}
                       >
                         Sort By Rating
-                      </button> */}
+                      </button>
                   </div>
                   <div className="row mt-4">
                      {
