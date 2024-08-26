@@ -8,10 +8,12 @@ export default function Restaurant({restaurant}) {
       
         <div className="card p-3 rounded">
             
-                <img src={restaurant.images[0].url}
-                    alt={restaurant.name} 
-                    className='card-img-top mx-auto'
+            <Link to={`/eats/stores/${restaurant._id}/menus`} className='btn btn-block'>
+                <img src={restaurant.images[0].url} 
+                     alt={restaurant.name} 
+                     className='card-img-top mx-auto'
                 />
+            </Link>
 
             {/* Heading and Address */}
             <div className="card-body d-flex flex-column">

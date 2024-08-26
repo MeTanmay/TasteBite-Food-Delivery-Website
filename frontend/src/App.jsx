@@ -5,17 +5,29 @@ import Home from "./components/layouts/Home";
 import Footer from "./components/layouts/Footer";
 import Menu from "./components/layouts/Menu";
 import Cart from "./components/cart/Cart";
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 export default function App() {
   return (
-    <div className="App">
-      <Header/>
-      <div className="container container-fluid">
-        <Home/>
-        <Menu/>
-        <Cart/>
+    <BrowserRouter>
+      <div className="App">
+
+        <Header />
+
+        <div className="container container-fluid">
+          <Routes>
+
+            <Route path="/" element={<Home />}/>
+            <Route path="/eats/stores/:id/menus" element={<Menu/>}/>
+            {/* <Route path="/users/login" element={<Login/>} /> */}
+            {/* <Route path="/users/signup" element={<Register/>} /> */}
+
+          </Routes>
+        </div>
+
+        <Footer />
+
       </div>
-      <Footer />
-    </div>
+    </BrowserRouter>
   );
 }

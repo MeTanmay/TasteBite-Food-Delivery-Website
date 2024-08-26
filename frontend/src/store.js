@@ -7,7 +7,7 @@ import {legacy_createStore as createStore,
 
 import thunk from 'redux-thunk';        // helps to run the data fetching (delayed work)
 import { restaurantReducer } from './reducer/restaurantReducer';
-// import { menuReducer } from './reducer/menuReducer';
+import { menuReducer } from './reducer/menuReducer';
 // import { authReducer } from './reducer/userReducer';
 
 // create store -> just like array or object
@@ -17,7 +17,7 @@ import { restaurantReducer } from './reducer/restaurantReducer';
 
 const reducer = combineReducers({
     restaurants : restaurantReducer,
-    // menus : menuReducer,
+    menus : menuReducer,
     // auth : authReducer,
 });
 

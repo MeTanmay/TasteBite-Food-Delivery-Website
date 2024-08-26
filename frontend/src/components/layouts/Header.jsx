@@ -8,9 +8,10 @@ export default function Header() {
 
     {/* Logo */}
     <div className="col-12 col-md-3">
-            <img src="./images/logo.webp" alt="LogoImage" className="logo" />
-        
-    </div>
+        <Link to='/'>
+            <img src="/images/logo.webp" alt="LogoImage" className="logo" />
+        </Link>
+     </div>
 
     {/* Search Bar and Search Icon*/}
     <div className="col-12 col-md-6 mt-2 mt-md-6">
