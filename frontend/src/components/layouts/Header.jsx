@@ -1,59 +1,103 @@
 import React from 'react'
 import Search from './Search';
 import { Link } from 'react-router-dom';
+import { useAlert } from 'react-alert';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../action/userAction';
 
 export default function Header() {
-  return (
-    <nav className="navbar row sticky-top">
+    const alert = useAlert();
+    const dispatch = useDispatch();
 
-    {/* Logo */}
-    <div className="col-12 col-md-3">
-        <Link to='/'>
-            <img src="/images/logo.webp" alt="LogoImage" className="logo" />
-        </Link>
-     </div>
+    const { user, loading } = useSelector((state) => state.auth);
 
-    {/* Search Bar and Search Icon*/}
-    <div className="col-12 col-md-6 mt-2 mt-md-6">
-        <Search/>
-    </div>
+    const logoutHandler = () => {
+        dispatch(logout());
+        alert.success("Logged Out Successfully!");
+    }
+    return (
+        <nav className="navbar row sticky-top">
 
-    {/* Cart with cart no. */}
-    <div className="col-12 col-md-3 mt-4 mt-md-0">
-        <span className="ml-3" id="cart">
-            Cart
-        </span>
-        <span className="ml-1" id='cart_count'>
-            0
-        </span>
+            {/* Logo */}
+            <div className="col-12 col-md-3">
+                <Link to='/'>
+                    <img src="/images/logo.webp" alt="LogoImage" className="logo" />
+                </Link>
 
-        {
-            1 < 5 ? (
-                <>
-                    <div className="ml-4 dropdown d-inline">
-                        <figure className="avatar avatar-nav">
-                            <img src="/images/images.png" alt="avatar" 
-                            className="rounded-circle" />
-                        </figure>
-                        <span style={{color:"white", fontWeight:"bolder"}}>
-                            WSA Developer
-                        </span>
-                    </div>
-                </>
-            ) 
-            : (
-                <>
-                    <div className="btn ml-4" id="login_btn">
-                        Login
-                    </div>
-                </>
-            )
-        }
+            </div>
 
-    </div>
+            {/* Search Bar and Search Icon*/}
+            <div className="col-12 col-md-6 mt-2 mt-md-6">
+                <Search />
+            </div>
+
+            {/* Cart with cart no. */}
+            <div className="col-12 col-md-3 mt-4 mt-md-0">
+                <span className="ml-3" id="cart">
+                    Cart
+                </span>
+                <span className="ml-1" id='cart_count'>
+                    0
+                </span>
+
+                {
+                    user ? (
+                        <>
+                            <div className="ml-4 dropdown d-inline">
+                                <Link to='/' className='btn dropdown-toggle text-white mt-4'
+                                    type='button'
+                                    id='dropDownMenuButton'
+                                    data-toggle='dropdown'
+                                    aria-haspopup='true'
+                                    aria-expanded='false'
+                                >
+                                    <figure className="avatar avatar-nav">
+                                        <img src="/images/images.png" alt="avatar"
+                                            className="rounded-circle" />
+                                    </figure>
+                                    <span >
+                                        {user && user.name}
+                                    </span>
+                                </Link>
+
+                                <div className="dropdown-menu" 
+                                    aria-labelledby='dropDownMenuButton'
+                                >
+                                    <Link className='dropdown-item' 
+                                        to='/eats/orders/me/myOrders'>
+                                            Orders
+                                    </Link>
+
+                                    <Link className='dropdown-item' 
+                                        to='/users/me'>
+                                            Profile
+                                    </Link>
+
+                                    <Link className='dropdown-item' 
+                                            to='/'
+                                            onClick={logoutHandler}
+                                    >
+                                            Logout
+                                    </Link>
+                                </div>
+
+                            </div>
+                        </>
+                    )
+                        : (
+                            !loading && (
+                            
+                                <Link to='/users/login' className="btn ml-4" id="login_btn">
+                                    Login
+                                </Link>
+                            )
+                        )
+                }
+
+            </div>
 
 
-</nav>
-);
+        </nav>
+    );
 
 }
