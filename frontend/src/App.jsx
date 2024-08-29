@@ -12,6 +12,9 @@ import store from './store'
 import { loadUser } from "./actions/userAction";
 import Profile from "./components/users/Profile"
 import UpdateProfile from "./components/users/UpdateProfile"
+import ForgotPassword from '../src/components/users/ForgotPassword'
+import NewPassword from '../src/components/users/NewPassword'
+
 
 export default function App() {
   // dipatched exactly once when the component is first rendered , and check if user is authenticated or not
@@ -35,7 +38,8 @@ export default function App() {
             <Route path="/users/login" element={<Login/>} />
             <Route path="/users/me" element={<Profile/>} />
             <Route path="/users/me/update" element={<UpdateProfile/>} />
-            
+            <Route path="/users/forgotPassword" element={<ForgotPassword/>} />
+            <Route path="/users/resetPassword/:token" element={<NewPassword/>} />
             
 
           </Routes>
