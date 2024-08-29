@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
 import Search from './Search';
 import { Link } from 'react-router-dom';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../actions/userAction';
 
-export default function Header() {
+const Header = () => {
+
     const alert = useAlert();
     const dispatch = useDispatch();
 
@@ -15,6 +16,7 @@ export default function Header() {
         dispatch(logout());
         alert.success("Logged Out Successfully!");
     }
+
     return (
         <nav className="navbar row sticky-top">
 
@@ -99,5 +101,6 @@ export default function Header() {
 
         </nav>
     );
+};
 
-}
+export default Header;

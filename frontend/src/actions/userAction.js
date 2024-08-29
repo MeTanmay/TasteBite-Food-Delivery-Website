@@ -1,32 +1,29 @@
 import axios from "axios";
 import { CLEAR_ERRORS, LOAD_USER_FAIL, LOAD_USER_REQUEST, LOAD_USER_SUCCESS, LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_FAIL, LOGOUT_SUCCESS, REGISTER_USER_FAIL, REGISTER_USER_REQUEST, REGISTER_USER_SUCCESS } from "../constants/userConstant"
 
+export const login = (email, password) => async (dispatch) => {
 
-//Login
-
-export const userLogin = (email, password) => async(dispatch) => {
-
-    try{
-        dispatch({type:LOGIN_REQUEST});
+    try {
+        dispatch({ type: LOGIN_REQUEST });
         const config = {
-            headers:{
-                "Content-Type" : "application/json",
-            } 
+            headers: {
+                "Content-Type": "application/json",
+            }
         };
 
-        const {data} = await axios.post(
-            "/api/v1/users/login", 
-            {email, password},
+        const { data } = await axios.post(
+            "/api/v1/users/login",
+            { email, password },
             config
         );
 
         dispatch({
-            type:LOGIN_SUCCESS, 
+            type: LOGIN_SUCCESS,
             payload: data.data.user,
         });
 
 
-    }catch(error){
+    } catch (error) {
         dispatch({
             type: LOGIN_FAIL,
             payload: "Login Failed"
@@ -36,16 +33,16 @@ export const userLogin = (email, password) => async(dispatch) => {
 
 
 // Register
-export const register = (userData)=> async(dispatch) => {
-    
-    try{
+export const register = (userData) => async (dispatch) => {
 
-        dispatch({type: REGISTER_USER_REQUEST});
+    try {
+
+        dispatch({ type: REGISTER_USER_REQUEST });
         const config = {
-            headers:{"Content-Type" : "multipart/fprm-data"},
+            headers: { "Content-Type": "multipart/fprm-data" },
         };
 
-        const {data} = await axios.post('/api/v1/users/signup', userData, config);
+        const  data  = await axios.post('/api/v1/users/signup', userData, config);
 
         dispatch({
             type: REGISTER_USER_SUCCESS,
@@ -54,8 +51,9 @@ export const register = (userData)=> async(dispatch) => {
 
         return data.data.user; // useful if the calling function needs this data
 
-    }catch(error){
-        dispatch({type:REGISTER_USER_FAIL,
+    } catch (error) {
+        dispatch({
+            type: REGISTER_USER_FAIL,
             payload: error.response.data.message
         })
     }
@@ -63,37 +61,38 @@ export const register = (userData)=> async(dispatch) => {
 
 // Load User Action
 
-export const loadUser = () => async(dispatch) =>{
-    try{
+export const loadUser = () => async (dispatch) => {
+    try {
 
-        dispatch({type: LOAD_USER_REQUEST});
+        dispatch({ type: LOAD_USER_REQUEST });
 
-        const {data} = await axios.get('/api/v1/users/me')
+        const{data } = await axios.get('/api/v1/users/me')
+        console.log(data);
         dispatch({
             type: LOAD_USER_SUCCESS,
-            payload:data.user
+            payload: data.user
         });
 
-    }catch(error){
+    } catch (error) {
         dispatch({
-            type:LOAD_USER_FAIL,
-            payload:error.response.data.message
+            type: LOAD_USER_FAIL,
+            payload: error.response.data.message
         })
     }
 }
 
 
 // Logout Action
-export const logout = () => async(dispatch) => {
-    try{
+export const logout = () => async (dispatch) => {
+    try {
         await axios.get('/api/v1/users/logout');
         dispatch({
             type: LOGOUT_SUCCESS,
         });
 
-    }catch(error){
+    } catch (error) {
         dispatch({
-            type:LOGOUT_FAIL,
+            type: LOGOUT_FAIL,
             payload: error.response.data.message,
         });
     }
@@ -101,7 +100,7 @@ export const logout = () => async(dispatch) => {
 
 
 // Clear Errors
-export const clearErrors = () => async(dispatch) =>{
+export const clearErrors = () => async (dispatch) => {
 
     dispatch({
         type: CLEAR_ERRORS,

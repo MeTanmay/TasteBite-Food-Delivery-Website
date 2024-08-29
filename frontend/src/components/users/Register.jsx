@@ -38,11 +38,11 @@ const Register = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     if (password !== passwordConfirm) {
-      alert.error("Passowrd don't matched");
+      alert.error("Passoword don't matched");
       return;
     }
 
-    const formData = new FormData(); //{name: "Tanmay", email:"tanmayborse28@gmail.com"}
+    const formData = new FormData(); //{name: "Vaibhav", email:"vn@gmail.com"}
 
     formData.set("name", name);
     formData.set("email", email);
@@ -50,7 +50,7 @@ const Register = () => {
     formData.set("passwordConfirm", passwordConfirm);
     formData.set("phoneNumber", phoneNumber);
     if (avatar === "") {
-      formData.set("avatar", "images/images.png")
+      formData.set("avatar", "/images/images.png")
     } else {
       formData.set("avatar", avatar);
     }
@@ -63,12 +63,12 @@ const Register = () => {
     if (e.target.name === "avatar") {
       const reader = new FileReader();
       reader.onload = () => {
-        if (reader.readyState === 2) { // indicates reading is done
+        if (reader.readyState == 2) { // indicates reading is done
           setAvatarPreview(reader.result);
           setAvatar(reader.result);
         }
       }
-      reader.readAsDataURL(e.target.file[0]);
+      reader.readAsDataURL(e.target.files[0]);
     }
     else {
       setUser({
