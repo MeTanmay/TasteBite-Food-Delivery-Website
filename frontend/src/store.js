@@ -11,6 +11,7 @@ import { restaurantReducer } from './reducer/restaurantReducer';
 import { menuReducer } from './reducer/menuReducer';
 import { authReducer, forgotPasswordReducer, userReducer } from './reducer/userReducer';
 import { cartReducer } from './reducer/cartReducer';
+import { myOrderReducer, newOrderReducer, orderDetailsReducer } from './reducer/orderReducer';
 
 // create store -> just like array or object
 // combineReducers -> to group the reducer
@@ -24,6 +25,9 @@ const reducer = combineReducers({
     user: userReducer,
     forgotPassword: forgotPasswordReducer,
     cart: cartReducer,
+    newOrder: newOrderReducer,
+    myOrders: myOrderReducer,
+    orderDetails: orderDetailsReducer
 });
 
 // helps us to connect the reactDevTools 
