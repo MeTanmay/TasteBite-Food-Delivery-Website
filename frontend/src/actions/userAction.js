@@ -24,6 +24,7 @@ import {
     UPDATE_PROFILE_FAIL, 
     UPDATE_PROFILE_REQUEST,
     UPDATE_PROFILE_SUCCESS} from "../constants/userConstant"
+import { CLEAR_CART } from "../constants/cartConstant";
 
 export const login = (email, password) => async (dispatch) => {
 
@@ -123,18 +124,18 @@ export const updateProfile = (userData) => async(dispatch) => {
     }
 }
 
-
 // Logout Action
-export const logout = () => async (dispatch) => {
-    try {
+export const logout = () => async(dispatch) => {
+    try{
         await axios.get('/api/v1/users/logout');
         dispatch({
             type: LOGOUT_SUCCESS,
         });
+        dispatch({type: CLEAR_CART});   // clear the cart when logout
 
-    } catch (error) {
+    }catch(error){
         dispatch({
-            type: LOGOUT_FAIL,
+            type:LOGOUT_FAIL,
             payload: error.response.data.message,
         });
     }
