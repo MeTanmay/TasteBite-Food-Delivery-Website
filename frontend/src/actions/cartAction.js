@@ -71,7 +71,7 @@ export const updateCartQuantity = (foodItemId, quantity, alert) => async(dispatc
 
 // Remove Items from Cart
 
-export const removeItemFromCart = (foodItemId) = async(dispatch, getState) => {
+export const removeItemFromCart = (foodItemId) => async(dispatch, getState) => {
     try{
         const {user} = getState().auth;
         if(typeof foodItemId === "object"){
